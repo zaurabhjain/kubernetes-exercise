@@ -5,7 +5,7 @@ metadata:
   labels:
     app: demo-voting-app
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       name: postgres-pod
@@ -20,9 +20,11 @@ spec:
             - containerPort: 5432
           env:
             - name: POSTGRES_USER
-              value: "postgres"
+              value: postgres
             - name: POSTGRES_PASSWORD
-              value: "postgres"
+              value: postgres
+            - name: POSTGRES_HOST_AUTH_METHOD
+              value: trust
   selector:
     matchLabels:
       name: postgres-pod
