@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-app-deployment
+  labels:
+    app: demo-voting-app
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: worker-app-pod
+      labels:
+        name: worker-app-pod
+        app: demo-voting-app
+    spec:
+      containers:
+        - image: bretfisher/examplevotingapp_worker:java
+          name: worker-app-pod
+  selector:
+    matchLabels:
+      name: worker-app-pod
+      app: demo-voting-app
+      
+    
